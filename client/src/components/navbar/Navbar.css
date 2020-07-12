@@ -1,0 +1,23 @@
+.navbar-Propit{
+    background-color: white !important;
+}
+.envelope{
+    width: 1.5rem;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+.lNavbar{
+    color: black;
+}
+.residence{
+    background-color: #4eac79 !important;
+    border: black solid 1px !important;
+}
+.residence:hover{
+    background-color: rgb(180, 180, 180) !important;
+}
+@media screen and (max-width: 1078px) {
+    .toggleNavbar{
+        display: none;
+    }
+}

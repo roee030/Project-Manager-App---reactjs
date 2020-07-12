@@ -1,0 +1,13 @@
+p1{
+    text-align: right !important;
+    color: #4eac79;
+    font-size: 2rem;
+    direction: rtl;
+    right: 0;
+}
+.headerFor-managmentTasks{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row-reverse;
+
+}
