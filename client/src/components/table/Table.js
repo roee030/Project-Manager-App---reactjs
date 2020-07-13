@@ -1,6 +1,11 @@
 import React, {useState,useEffect} from 'react';
 import './Table.css'
 import axios from 'axios';
+import check from './img/check.svg';
+import eye from './img/eye.svg';
+import pen from './img/pen.svg';
+import times from './img/times.svg';
+import trash from './img/trash.svg';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -16,9 +21,15 @@ const useStyles = makeStyles({
   },
 });
 
-// function createData(name, calories, fat, carbs, protein) {
-//   return { name, calories, fat, carbs, protein };
-// }
+function action() {
+  return  ( 
+    <div className="actions"> 
+      <div className="action"><a href='#'><img className="actions__icon" src={eye}/></a>צפייה</div>
+      <div className="action"> <a href='#'><img className="actions__icon" src={pen}/></a>עריכה</div>
+      <div className="action"><a href='#' ><img className="actions__icon" src={trash}/></a>מחיקה</div>
+    </div>
+     );
+}
 
 // const rows = [
 //   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
@@ -50,7 +61,7 @@ export default function AcccessibleTable() {
           <TableCell align="right">טלפון</TableCell>
           <TableCell align="right">מייל</TableCell>
           <TableCell align="right">תאריך יצירת המשימה</TableCell>
-          <TableCell align="right">פעולות</TableCell>
+          <TableCell align="right">פעולות </TableCell>
           </TableRow>
         </TableHead>
         <TableBody >
@@ -59,8 +70,8 @@ export default function AcccessibleTable() {
               <TableCell align="right" component="th" scope="row">{row.User_Name}</TableCell>
               <TableCell align="right">{row.Phone_Number}</TableCell>
               <TableCell align="right">{row.Mail}</TableCell>
-              <TableCell align="right">{row.Date}</TableCell>
-              <TableCell align="right"></TableCell>
+              <TableCell align="right">{(row.Date).substring(0,9)}</TableCell>
+              <TableCell align="right">{action()}</TableCell>
             </TableRow>
           )) : <div>Loading</div>}
         </TableBody>
