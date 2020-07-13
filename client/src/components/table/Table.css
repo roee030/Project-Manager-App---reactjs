@@ -9,6 +9,8 @@
 }
 .actions{
     display: flex;
+    
+    justify-content: space-evenly;
 }
 .actions__icon{
     width: 1rem;

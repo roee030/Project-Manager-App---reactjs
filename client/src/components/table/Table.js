@@ -6,6 +6,8 @@ import eye from './img/eye.svg';
 import pen from './img/pen.svg';
 import times from './img/times.svg';
 import trash from './img/trash.svg';
+import Dialog from '../dialog/Dialog.js';
+import EditDialog from '../dialog/EditDialog.js';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -21,21 +23,20 @@ const useStyles = makeStyles({
   },
 });
 
-function action() {
-  return  ( 
-    <div className="actions"> 
-      <div className="action"><a href='#'><img className="actions__icon" src={eye}/></a>צפייה</div>
-      <div className="action"> <a href='#'><img className="actions__icon" src={pen}/></a>עריכה</div>
-      <div className="action"><a href='#' ><img className="actions__icon" src={trash}/></a>מחיקה</div>
-    </div>
-     );
+function action(row) {
+     if(row.User_Name) { 
+      return(
+        <div className="actions">
+          <div className="action"><Dialog data={row}></Dialog></div>
+          <div className="action"><EditDialog  data={row}> </EditDialog></div>
+          <div className="action"><a href='#' ><img className="actions__icon" src={trash}/></a>מחיקה</div>
+        </div>
+         )
+     }
+ 
 }
 
-// const rows = [
-//   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-//   createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-//   createData('Eclair', 262, 16.0, 24),
-// ];
+
 
 export default function AcccessibleTable() {
     const classes = useStyles();
@@ -53,6 +54,7 @@ export default function AcccessibleTable() {
         },[])
    
     return (
+
     <TableContainer dir='rtl' className="tablefff" component={Paper}>
       <Table className={classes.table} aria-label="caption table">
         <TableHead>
@@ -65,15 +67,18 @@ export default function AcccessibleTable() {
           </TableRow>
         </TableHead>
         <TableBody >
-          {data ? data.map((row) => (
-            <TableRow key={row.User_Name} className ='rows'>
-              <TableCell align="right" component="th" scope="row">{row.User_Name}</TableCell>
-              <TableCell align="right">{row.Phone_Number}</TableCell>
-              <TableCell align="right">{row.Mail}</TableCell>
-              <TableCell align="right">{(row.Date).substring(0,9)}</TableCell>
-              <TableCell align="right">{action()}</TableCell>
-            </TableRow>
-          )) : <div>Loading</div>}
+          {data.length ? data.map((row) => {
+          
+            return (
+              <TableRow key={row.User_Name} className ='rows'>
+                <TableCell align="right" component="th" scope="row">{row.User_Name}</TableCell>
+                <TableCell align="right">{row.Phone_Number}</TableCell>
+                <TableCell align="right">{row.Mail}</TableCell>
+                <TableCell align="right">{(row.Date).substring(0,9)}</TableCell>
+                <TableCell align="right">{action(row)}</TableCell>
+              </TableRow>
+            )
+          }) : <div>Loading</div>}
         </TableBody>
       </Table>
     </TableContainer>

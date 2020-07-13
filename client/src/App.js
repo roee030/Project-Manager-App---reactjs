@@ -6,6 +6,8 @@ import Title from './components/title/Title.js';
 import SearchBar from './components/searchBar/SearchBar.js';
 import TaskOption from './components/taskOptions/TaskOption.js';
 import Table from './components/table/Table.js';
+import Dialog from './components/dialog/Dialog.js';
+
 function App() {
   return (
     <>
@@ -15,6 +17,7 @@ function App() {
             <SearchBar/>
             <TaskOption/>
             <Table/>
+            
         </div>
     </>
   );

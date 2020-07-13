@@ -12,7 +12,12 @@ app.listen(process.env.PORT, () => console.log('App is running'));
 
 //create 
 app.post('/insert', (request, response) => {
-
+    const { Task, User_Name, Phone_Number,Mail} = request.body;
+    const db = dbService.getDbServiceInstance();
+    const result = db.insertNewTask( Task, User_Name, Phone_Number,Mail);
+    result
+    .then(data => response.json({success: true}))
+    .catch(err => console.log(err))
 })
 
 
