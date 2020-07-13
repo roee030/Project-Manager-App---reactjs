@@ -15,10 +15,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function AlertDialogSlide() {
   const [open, setOpen] = React.useState(false);
-  const [phone,SetPhone] = useState();
-  const [mail,SetMail] = useState();
-  const [task,SetTask] = useState();
-  const [user,SetUser] = useState();
+  const [phone,setPhone] = useState();
+  const [mail,setMail] = useState();
+  const [task,setTask] = useState();
+  const [user,setUser] = useState();
+  const [data,setData] = useState();
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -35,21 +36,25 @@ export default function AlertDialogSlide() {
         method: 'POST',
         body:JSON.stringify({User_Name: user,Task: task, Mail:mail, Phone_Number: phone})
     })
-    .then(response => response.json())
+    .then(response => {
+        response.json();
+        console.log('Ani Po', response);
+        setData()
+    })
     setOpen(false);
 
   }
   const handleUserOnChange = event => {
-    SetUser(event.target.value)
+    setUser(event.target.value)
   };
   const handlePhoneOnChange = event => {
-    SetPhone(event.target.value)
+    setPhone(event.target.value)
   };
   const handleMailOnChange = event => {
-    SetMail(event.target.value)
+    setMail(event.target.value)
   };
   const handleTaskOnChange = event => {
-    SetTask(event.target.value)
+    setTask(event.target.value)
   };
   return (
     <div>

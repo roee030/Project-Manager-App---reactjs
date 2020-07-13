@@ -10,7 +10,7 @@
 .actions{
     display: flex;
     
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 .actions__icon{
     width: 1rem;
@@ -27,5 +27,9 @@
 .action{
     display: flex;
     flex-direction: column;
-    margin-left: 10px;
+    margin-left: 0px;
+    justify-self: center;
+}
+.action div{
+    align-self: center;
 }

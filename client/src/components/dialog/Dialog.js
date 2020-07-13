@@ -34,7 +34,8 @@ export default function AlertDialog(props) {
                Name: {props.data.User_Name} <br/> 
                Phone number:  {props.data.Phone_Number} <br/>
                Mail:  {props.data.Mail} <br/>
-                Date: {(props.data.Date).substring(0,9)} <br/>
+                Date: {(props.data.Date).substring(0,10)} <br/>
+                Task: {(props.data.Task)}
             </div>
           </DialogContentText>
         </DialogContent>

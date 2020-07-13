@@ -7,6 +7,7 @@ import pen from './img/pen.svg';
 import times from './img/times.svg';
 import trash from './img/trash.svg';
 import Dialog from '../dialog/Dialog.js';
+import DeleteDialog from '../dialog/DeleteDialog.js';
 import EditDialog from '../dialog/EditDialog.js';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -27,9 +28,9 @@ function action(row) {
      if(row.User_Name) { 
       return(
         <div className="actions">
-          <div className="action"><Dialog data={row}></Dialog></div>
-          <div className="action"><EditDialog  data={row}> </EditDialog></div>
-          <div className="action"><a href='#' ><img className="actions__icon" src={trash}/></a>מחיקה</div>
+          <div className="action"> <Dialog data={row}> </Dialog><div>צפייה</div> </div>
+          <div className="action"><EditDialog  data={row}> </EditDialog><div>עריכה</div></div>
+          <div className="action"><DeleteDialog  data={row}> </DeleteDialog><div>מחיקה</div></div>
         </div>
          )
      }
@@ -74,7 +75,7 @@ export default function AcccessibleTable() {
                 <TableCell align="right" component="th" scope="row">{row.User_Name}</TableCell>
                 <TableCell align="right">{row.Phone_Number}</TableCell>
                 <TableCell align="right">{row.Mail}</TableCell>
-                <TableCell align="right">{(row.Date).substring(0,9)}</TableCell>
+                <TableCell align="right">{(row.Date).substring(0,10)}</TableCell>
                 <TableCell align="right">{action(row)}</TableCell>
               </TableRow>
             )

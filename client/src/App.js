@@ -3,10 +3,8 @@ import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Navbar from './components/navbar/Navbar.js';
 import Title from './components/title/Title.js';
-import SearchBar from './components/searchBar/SearchBar.js';
-import TaskOption from './components/taskOptions/TaskOption.js';
-import Table from './components/table/Table.js';
 import Dialog from './components/dialog/Dialog.js';
+import BigTable from './components/bigTable/BigTable.js';
 
 function App() {
   return (
@@ -14,9 +12,8 @@ function App() {
         <Navbar/>
         <div className='container'>
             <Title/>
-            <SearchBar/>
-            <TaskOption/>
-            <Table/>
+            <BigTable/>
+            
             
         </div>
     </>
