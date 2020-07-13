@@ -4,3 +4,6 @@
 .rowBar{
     background-color: #efefef;
 }
+.rows:hover{
+    background-color: #eaf9f3;
+}

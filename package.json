@@ -1,0 +1,24 @@
+{
+  "name": "Roee-Angel-14-07-20",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "mongodb": "^3.5.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roee030/Roee-Angel-14-07-20.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/roee030/Roee-Angel-14-07-20/issues"
+  },
+  "homepage": "https://github.com/roee030/Roee-Angel-14-07-20#readme"
+}

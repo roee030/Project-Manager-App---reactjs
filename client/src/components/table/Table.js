@@ -41,9 +41,9 @@ export default function AcccessibleTable() {
             <TableCell align="right">שם משתמש</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody >
           {rows.map((row) => (
-            <TableRow key={row.name}>
+            <TableRow key={row.name} className ='rows'>
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
