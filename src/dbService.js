@@ -46,7 +46,7 @@ class DbService {
 
     async insertNewTask(task,user,phone,mail) {
         try {
-            const id = uniqueString();
+            const id = uniqueString().toString();
             const insertTask = await new Promise((resolve, reject) => {
                 const query = "INSERT INTO task ( Task, User_Name, Phone_Number, Mail,Id) VALUES (?,?,?,?,?);";
 
@@ -81,19 +81,15 @@ class DbService {
         }
     }
 
-    async updateNameById(id, phone, mail) {
+    async updateTaskById(Id,Task) {
+        console.log('updateTaskById',Task);
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = `UPDATE task_manager
-                                SET
-                                    Phone_Number = phone,
-                                    Mail = mail
-                                WHERE
-                                    User_Name= id`
-    
-                connection.query(query, [name, id] , (err, result) => {
+                const query = `UPDATE task SET Task = '${Id}'  WHERE Id = '${Task}';`
+                console.log(query);
+                connection.query(query ,[Id, Task ], (err, result) => {
                     if (err) reject(new Error(err.message));
-                    resolve(result.affectedRows);
+                    
                 })
             });
     

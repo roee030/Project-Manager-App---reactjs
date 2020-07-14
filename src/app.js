@@ -32,5 +32,14 @@ app.get('/getAll', (request, response) => {
     .catch(err => console.log(err));
 })
 //update
+app.patch('/update', (request, response) => {
+    const { Task ,Id} = request.body;
+    const db = dbService.getDbServiceInstance();
 
+    const result = db.updateTaskById(Task, Id);
+    
+    result
+    .then(data => response.json({success : data}))
+    .catch(err => console.log(err));
+});
 //delete

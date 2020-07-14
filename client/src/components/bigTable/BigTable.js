@@ -7,7 +7,6 @@ export default function BigTable() {
     return (
         <div>
             <SearchBar />
-            <TaskOption/>
             <Table/>
         </div>
     )

@@ -7,13 +7,16 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import pen from '../table/img/pen.svg';
+import TextField from '@material-ui/core/TextField';
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function AlertDialogSlide() {
+export default function AlertDialogSlide(props) {
   const [open, setOpen] = React.useState(false);
-
+  const [task, setTask] = React.useState();
+  const [id,setId] = React.useState(props.data.Id);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -21,7 +24,30 @@ export default function AlertDialogSlide() {
   const handleClose = () => {
     setOpen(false);
   };
+  const handleTaskOnChange = event => {
+    setTask(event.target.value)
+    console.log(event.target.value);
+  };
+  const updateData = () => {
+    setOpen(false);
 
+
+  }
+  const UpdateTask = () => {
+    console.log('UpdateTask',task);
+    fetch('http://localhost:5000/update', {
+        method: 'PATCH',
+        headers: {
+            'Content-type' : 'application/json'
+        },
+        body:JSON.stringify({Task: task , Id: id})
+    })
+    .then(response => {
+        response.json();
+    })
+    setOpen(false);
+
+  }
   return (
     <div>
       <Button  onClick={handleClickOpen}>
@@ -35,18 +61,18 @@ export default function AlertDialogSlide() {
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle>
+        <DialogTitle id="alert-dialog-slide-title">{"Edit Task"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            
+            <TextField id="standard-basic" onChange={handleTaskOnChange} defaultValue={task} label="Edit Task" /><br></br>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Disagree
+            Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
-            Agree
+          <Button onClick={UpdateTask} color="primary">
+            Edit
           </Button>
         </DialogActions>
       </Dialog>

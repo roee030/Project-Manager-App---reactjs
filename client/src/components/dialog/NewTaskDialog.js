@@ -8,12 +8,13 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-
+import axios from 'axios';
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function AlertDialogSlide() {
+export default function AlertDialogSlide(props) { 
+  console.log(props);
   const [open, setOpen] = React.useState(false);
   const [phone,setPhone] = useState();
   const [mail,setMail] = useState();
@@ -27,6 +28,17 @@ export default function AlertDialogSlide() {
   const handleClose = () => {
     setOpen(false);
   };
+  function getData(){
+    axios
+          .get(`http://localhost:5000/getall`)
+          .then(res => {
+              console.log('rorrThe King', res.data.data)
+              setData((res.data.data))
+          })
+          .catch(err =>{
+              console.log(err)
+          })
+  }
   const AddTask = () => {
     console.log(user,phone,mail,task);
     fetch('http://localhost:5000/insert', {
@@ -39,7 +51,7 @@ export default function AlertDialogSlide() {
     .then(response => {
         response.json();
         console.log('Ani Po', response);
-        setData()
+        getData()
     })
     setOpen(false);
 
