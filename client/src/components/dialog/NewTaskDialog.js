@@ -13,8 +13,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function AlertDialogSlide(props) { 
-  console.log(props);
+export default function AlertDialogSlide() { 
   const [open, setOpen] = React.useState(false);
   const [phone,setPhone] = useState();
   const [mail,setMail] = useState();
@@ -50,7 +49,6 @@ export default function AlertDialogSlide(props) {
     })
     .then(response => {
         response.json();
-        console.log('Ani Po', response);
         getData()
     })
     setOpen(false);

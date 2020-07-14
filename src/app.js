@@ -43,3 +43,34 @@ app.patch('/update', (request, response) => {
     .catch(err => console.log(err));
 });
 //delete
+app.delete('/delete/:id', (request, response) => {
+    const { id } = request.params;
+    const db = dbService.getDbServiceInstance();
+
+    const result = db.deleteRowById(id);
+    
+    result
+    .then(data => response.json({success : data}))
+    .catch(err => console.log(err));
+});
+//register
+app.post('/insertUser', (request, response) => {
+    const { User_Name,Password,Permission} = request.body;
+    const db = dbService.getDbServiceInstance();
+    const result = db.insertNewUser(  User_Name, Password,Permission);
+    result
+    .then(data => response.json({success: true}))
+    .catch(err => console.log(err))
+})
+
+//search task by name
+app.get('/search/:name', (request, response) => {
+    const { name } = request.params;
+    const db = dbService.getDbServiceInstance();
+
+    const result = db.searchByName(name);
+    
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
+})

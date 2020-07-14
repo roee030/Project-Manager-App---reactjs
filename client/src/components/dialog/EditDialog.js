@@ -34,7 +34,7 @@ export default function AlertDialogSlide(props) {
 
   }
   const UpdateTask = () => {
-    console.log('UpdateTask',task);
+    props.updateTask()
     fetch('http://localhost:5000/update', {
         method: 'PATCH',
         headers: {
@@ -43,7 +43,7 @@ export default function AlertDialogSlide(props) {
         body:JSON.stringify({Task: task , Id: id})
     })
     .then(response => {
-        response.json();
+        return props.updateTask(response.json());
     })
     setOpen(false);
 

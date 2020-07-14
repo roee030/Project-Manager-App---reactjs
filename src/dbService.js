@@ -64,13 +64,13 @@ class DbService {
 
     async deleteRowById(id) {
         try {
-            id = parseInt(id, 10); 
+             
             const response = await new Promise((resolve, reject) => {
-                const query = "DELETE FROM names WHERE id = ?";
-    
+                const query = `DELETE FROM task WHERE id =`+ parseInt(id);
+                console.log(query);
                 connection.query(query, [id] , (err, result) => {
                     if (err) reject(new Error(err.message));
-                    resolve(result.affectedRows);
+                    
                 })
             });
     
@@ -82,7 +82,7 @@ class DbService {
     }
 
     async updateTaskById(Id,Task) {
-        console.log('updateTaskById',Task);
+        //console.log('updateTaskById',Task);
         try {
             const response = await new Promise((resolve, reject) => {
                 const query = `UPDATE task SET Task = '${Id}'  WHERE Id = '${Task}';`
@@ -99,11 +99,26 @@ class DbService {
             return false;
         }
     }
+    async insertNewUser(user,permission,password) {
+        try {
+            const insertUser = await new Promise((resolve, reject) => {
+                const query = "INSERT INTO user (  User_Name, Password,Permission) VALUES (?,?,?);";
 
+                connection.query(query, [user,permission,password] , (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result.insertUser);
+                })
+            });
+            console.log(insertUser);
+           
+        } catch (error) {
+            console.log(error);
+        }
+    }
     async searchByName(name) {
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM names WHERE name = ?;";
+                const query = `SELECT * FROM task WHERE name = ${name};`;
 
                 connection.query(query, [name], (err, results) => {
                     if (err) reject(new Error(err.message));

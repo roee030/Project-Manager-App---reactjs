@@ -18,58 +18,76 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TaskOption from '../taskOptions/TaskOption.js';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
   },
 });
 
-function action(row,getData) {
-     if(row.User_Name) { 
-      return(
-        
-        <div className="actions">
-          <div className="action"> <Dialog data={row} setData={getData}> </Dialog><div>צפייה</div> </div>
-          <div className="action"><EditDialog  data={row}  setData={getData}> </EditDialog><div>עריכה</div></div>
-          <div className="action"><DeleteDialog  data={row}> </DeleteDialog><div>מחיקה</div></div>
-        </div>
-         )
-     }
 
- 
-}
 
 
 
 export default function AcccessibleTable() {
     const classes = useStyles();
-    const [data,setData] = useState([]);
+    const [data, setData] = useState([]);
+
     useEffect(()=>{
         axios
         .get(`http://localhost:5000/getall`)
         .then(res => {
             console.log(res.data.data)
-            getData()
+            setData(res.data.data)
 
         })
         .catch(err =>{
             console.log(err)
         })
-        },[])
-        function getData(){
-          axios
-                .get(`http://localhost:5000/getall`)
-                .then(res => {
-                    console.log('GetData function',res.data.data)
-                    setData(res.data.data)
-                })
-                .catch(err =>{
-                    console.log(err)
-                })
-        }
+        }, [])
+
+       const deleteRow = (rowIndex) => {
+          const newData = [...data];
+          newData.splice(rowIndex, 1)
+          setData(newData)
+       }
+       
+       const updateTask = () => {
+        const newData = [...data];
+        setData(newData)
+
+       }
+
+       const AddRow = (name,pn,task,mail,id) => {
+        const newData = [...data];
+        newData.push({
+          name,
+          pn,
+          task,
+          mail,
+          id
+        })
+        setData(newData)
+     }
+        function action(row, rowIndex) {
+          console.log('action', rowIndex);
+          if(row.User_Name) { 
+           return(
+             
+             <div className="actions">
+               <div className="action"> <Dialog data={row} > </Dialog><div>צפייה</div> </div>
+               <div className="action"><EditDialog  data={row} updateTask={updateTask} > </EditDialog><div>עריכה</div></div>
+               <div className="action"><DeleteDialog  data={row} deleteRow={deleteRow}  > </DeleteDialog><div>מחיקה</div></div>
+             </div>
+              )
+          }
+     }
+
+
     return (
       <>
-      <TaskOption getDataFunction={getData} />
+      <TaskOption AddRow={AddRow} />
         <TableContainer dir='rtl' className="tablefff" component={Paper}>
         <Table className={classes.table} aria-label="caption table">
           <TableHead>
@@ -82,18 +100,18 @@ export default function AcccessibleTable() {
             </TableRow>
           </TableHead>
           <TableBody >
-            {data.length ? data.map((row) => {
+            {data.length ? data.map((row,index) => {
             
               return (
-                <TableRow key={row.User_Name} className ='rows'>
+                <TableRow key={index} className ='rows'>
                   <TableCell align="right" component="th" scope="row">{row.User_Name}</TableCell>
                   <TableCell align="right">{row.Phone_Number}</TableCell>
                   <TableCell align="right">{row.Mail}</TableCell>
                   <TableCell align="right">{(row.Date).substring(0,10)}</TableCell>
-                  <TableCell align="right">{action(row,getData)}</TableCell>
+                  <TableCell align="right">{action(row,index)}</TableCell>
                 </TableRow>
               )
-            }) : <div>Loading</div>}
+            }) : <CircularProgress disableShrink />}
           </TableBody>
         </Table>
       </TableContainer>

@@ -6,7 +6,7 @@ export default function TaskOption(props) {
         <div className='wrapper'>
             <p className="listOfCostumer">רשימת הלקוחות שלך</p>
             <button className='newTask'>
-                <NewTaskDialog setRoee={props.getDataFunction}></NewTaskDialog>
+                <NewTaskDialog AddRow={props.AddRow} ></NewTaskDialog>
             </button>
             
         </div>

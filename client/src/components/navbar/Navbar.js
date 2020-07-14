@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import mainLogo from './logo.png';
 import envelope from './envelope-open-regular.svg';
 import fire from './fire.png';
+import ConnectionDialog from '../dialog/ConnectionDialog.js';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -43,7 +44,7 @@ export default function ButtonAppBar() {
           <Button >מחשבון שטחים</Button>
           <Button >מועדפים</Button>
           <Button className='residence'>מגורים</Button>
-          <Button >כניסה</Button>
+          <Button ><ConnectionDialog/></Button>
           </div>
         </Toolbar>
       </AppBar>

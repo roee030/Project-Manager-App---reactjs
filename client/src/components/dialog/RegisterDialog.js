@@ -6,39 +6,26 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
-import Trash from '../table/img/trash.svg';
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function AlertDialogSlide(props) {
+export default function AlertDialogSlide() {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
-      console.log(props.data.Id);
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
   };
-  const deleteTask = () => {
-      
-    props.deleteRow()
-    setOpen(false);
-    fetch(`http://localhost:5000/delete/${props.data.Id}`, {
-        method: 'DELETE'
-    })
-    .then(response => {
-        response.json()
-    })
-    
-    
-  }
+
   return (
     <div>
-      <Button onClick={handleClickOpen}>
-        <img className="actions__icon" src={Trash}/>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        Slide in alert dialog
       </Button>
       <Dialog
         open={open}
@@ -48,18 +35,18 @@ export default function AlertDialogSlide(props) {
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle id="alert-dialog-slide-title">{"Delete Task?"}</DialogTitle>
+        <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            Are you sure you want to delete this task?
-            
+            Let Google help apps determine location. This means sending anonymous location data to
+            Google, even when no apps are running.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Disagree
           </Button>
-          <Button onClick={deleteTask} color="primary">
+          <Button onClick={handleClose} color="primary">
             Agree
           </Button>
         </DialogActions>
