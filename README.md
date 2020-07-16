@@ -2,9 +2,13 @@
 ### The app is responsive and nicly styled.
 ### Everyone can use it for their own service...
 
-(/src/appImages/1.png width=100% height=100%)
-<img src =src/appImages/2.png>
-<img src =src/appImages/3.png>
+[url=https://postimg.cc/XpLzq0tt][img]https://i.postimg.cc/Z5ztfbHY/1.png[/img][/url]
+
+[url=https://postimages.org/][img]https://i.postimg.cc/BvqW0mRd/2.png[/img][/url]
+
+[url=https://postimg.cc/4Y3FhSgy][img]https://i.postimg.cc/RZ1rykp7/3.png[/img][/url]
+
+
 # HOW TO:
 
 ⋅⋅*cd src
