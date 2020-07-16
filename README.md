@@ -7,8 +7,7 @@
 <a href="https://postimg.cc/4Y3FhSgy" target="_blank"><img src="https://i.postimg.cc/RZ1rykp7/3.png" alt="3"/></a><br/><br/>
 
 # HOW TO:
-
-⋅⋅*cd src
-⋅⋅*nodemon app.js
-⋅⋅*cd ../client
-⋅⋅*npm start
+1.  cd src
+2.  nodemon app.js
+3.  cd ../client
+4.  npm start
